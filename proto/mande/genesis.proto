@@ -1,0 +1,14 @@
+syntax = "proto3";
+package mandelabs.mande.mande;
+
+import "gogoproto/gogo.proto";
+import "mande/params.proto";
+// this line is used by starport scaffolding # genesis/proto/import
+
+option go_package = "github.com/mande-labs/mande/x/mande/types";
+
+// GenesisState defines the mande module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+  // this line is used by starport scaffolding # genesis/proto/state
+}
