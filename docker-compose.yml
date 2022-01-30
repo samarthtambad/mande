@@ -1,0 +1,68 @@
+version: '3'
+
+services:
+  mandednode0:
+    container_name: mandednode0
+    image: "mande-labs/mandednode"
+    ports:
+      - "26656-26657:26656-26657"
+    environment:
+      - ID=0
+      - LOG=${LOG:-manded.log}
+    volumes:
+      - ./build:/manded:Z
+    networks:
+      localnet:
+        ipv4_address: 192.168.10.2
+
+  mandednode1:
+    container_name: mandednode1
+    image: "mande-labs/mandednode"
+    ports:
+      - "26659-26660:26656-26657"
+    environment:
+      - ID=1
+      - LOG=${LOG:-manded.log}
+    volumes:
+      - ./build:/manded:Z
+    networks:
+      localnet:
+        ipv4_address: 192.168.10.3
+
+  mandednode2:
+    container_name: mandednode2
+    image: "mande-labs/mandednode"
+    environment:
+      - ID=2
+      - LOG=${LOG:-manded.log}
+    ports:
+      - "26661-26662:26656-26657"
+    volumes:
+      - ./build:/manded:Z
+    networks:
+      localnet:
+        ipv4_address: 192.168.10.4
+
+  mandednode3:
+    container_name: mandednode3
+    image: "mande-labs/mandednode"
+    environment:
+      - ID=3
+      - LOG=${LOG:-manded.log}
+    ports:
+      - "26663-26664:26656-26657"
+    volumes:
+      - ./build:/manded:Z
+    networks:
+      localnet:
+        ipv4_address: 192.168.10.5
+
+networks:
+  localnet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      -
+        subnet: 192.168.10.0/16
+
